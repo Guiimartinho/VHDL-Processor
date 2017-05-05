@@ -1,55 +1,55 @@
 v 3
-file . "controlunit.vhd" "20170430195214.000" "20170430165244.935":
-  entity controlunit at 1( 0) + 0 on 743;
-  architecture a_controlunit of controlunit at 15( 295) + 0 on 744;
-file . "everything.vhd" "20170430194522.000" "20170430165245.045":
-  entity everything at 1( 0) + 0 on 745;
-  architecture a_everything of everything at 17( 284) + 0 on 746;
-file . "everything_tb.vhd" "20170430194214.000" "20170430165245.159":
-  entity everything_tb at 1( 0) + 0 on 747;
-  architecture a_everything_tb of everything_tb at 8( 107) + 0 on 748;
-file . "precontrolunit_tb.vhd" "20170430174826.000" "20170430165244.750":
-  entity precontrolunit_tb at 1( 0) + 0 on 741;
-  architecture a_precontrolunit_tb of precontrolunit_tb at 8( 111) + 0 on 742;
-file . "rompc_tb.vhd" "20170430171032.000" "20170430165244.447":
-  entity rompc_tb at 1( 0) + 0 on 737;
-  architecture a_rompc_tb of rompc_tb at 8( 102) + 0 on 738;
-file . "reg8bits.vhd" "20170430055438.000" "20170430165243.196":
-  entity reg8bits at 1( 0) + 0 on 719;
-  architecture a_reg8bits of reg8bits at 15( 272) + 0 on 720;
-file . "program_counter.vhd" "20170430060648.000" "20170430165244.042":
-  entity program_counter at 1( 0) + 0 on 731;
-  architecture a_program_counter of program_counter at 14( 253) + 0 on 732;
-file . "add_1.vhd" "20170430055728.000" "20170430165243.065":
-  entity add_1 at 1( 0) + 0 on 717;
-  architecture a_add_1 of add_1 at 12( 192) + 0 on 718;
-file . "tff.vhd" "20170430034416.000" "20170430165243.768":
-  entity tff at 1( 0) + 0 on 727;
-  architecture a_tff of tff at 12( 172) + 0 on 728;
-file . "rom.vhd" "20170430193044.000" "20170430165243.481":
-  entity rom at 1( 0) + 0 on 723;
-  architecture a_rom of rom at 14( 253) + 0 on 724;
+file . "controlunit.vhd" "20170430195214.000" "20170505195842.892":
+  entity controlunit at 1( 0) + 0 on 775;
+  architecture a_controlunit of controlunit at 15( 295) + 0 on 776;
+file . "everything.vhd" "20170430194522.000" "20170505195842.960":
+  entity everything at 1( 0) + 0 on 777;
+  architecture a_everything of everything at 17( 284) + 0 on 778;
+file . "everything_tb.vhd" "20170430194214.000" "20170505195843.045":
+  entity everything_tb at 1( 0) + 0 on 779;
+  architecture a_everything_tb of everything_tb at 8( 107) + 0 on 780;
+file . "precontrolunit_tb.vhd" "20170430174826.000" "20170505195842.775":
+  entity precontrolunit_tb at 1( 0) + 0 on 773;
+  architecture a_precontrolunit_tb of precontrolunit_tb at 8( 111) + 0 on 774;
+file . "rompc_tb.vhd" "20170430171032.000" "20170505195842.572":
+  entity rompc_tb at 1( 0) + 0 on 769;
+  architecture a_rompc_tb of rompc_tb at 8( 102) + 0 on 770;
+file . "reg8bits.vhd" "20170430055438.000" "20170505195841.729":
+  entity reg8bits at 1( 0) + 0 on 751;
+  architecture a_reg8bits of reg8bits at 15( 272) + 0 on 752;
+file . "program_counter.vhd" "20170430060648.000" "20170505195842.292":
+  entity program_counter at 1( 0) + 0 on 763;
+  architecture a_program_counter of program_counter at 14( 253) + 0 on 764;
+file . "add_1.vhd" "20170430055728.000" "20170505195841.658":
+  entity add_1 at 1( 0) + 0 on 749;
+  architecture a_add_1 of add_1 at 12( 192) + 0 on 750;
+file . "tff.vhd" "20170430034416.000" "20170505195842.113":
+  entity tff at 1( 0) + 0 on 759;
+  architecture a_tff of tff at 12( 172) + 0 on 760;
+file . "rom.vhd" "20170430193044.000" "20170505195841.928":
+  entity rom at 1( 0) + 0 on 755;
+  architecture a_rom of rom at 14( 253) + 0 on 756;
 file . "reg16bits.vhd" "20170428004414.000" "20170430023905.150":
   entity reg16bits at 1( 0) + 0 on 59;
   architecture a_reg16bits of reg16bits at 15( 275) + 0 on 60;
 file . "reg16bits_tb.vhd" "20170428004414.000" "20170430023905.259":
   entity reg16bits_tb at 1( 0) + 0 on 61;
   architecture a_reg16bits_tb of reg16bits_tb at 8( 106) + 0 on 62;
-file . "rom_tb.vhd" "20170430171350.000" "20170430165243.590":
-  entity rom_tb at 1( 0) + 0 on 725;
-  architecture a_rom_tb of rom_tb at 8( 100) + 0 on 726;
-file . "tff_tb.vhd" "20170430034434.000" "20170430165243.865":
-  entity tff_tb at 1( 0) + 0 on 729;
-  architecture a_tff_tb of tff_tb at 8( 100) + 0 on 730;
-file . "program_counter_tb.vhd" "20170430055804.000" "20170430165244.153":
-  entity program_counter_tb at 1( 0) + 0 on 733;
-  architecture a_program_counter_tb of program_counter_tb at 8( 112) + 0 on 734;
-file . "reg8bits_tb.vhd" "20170430055628.000" "20170430165243.305":
-  entity reg8bits_tb at 1( 0) + 0 on 721;
-  architecture a_reg8bits_tb of reg8bits_tb at 8( 105) + 0 on 722;
-file . "rompc.vhd" "20170430171054.000" "20170430165244.333":
-  entity rompc at 1( 0) + 0 on 735;
-  architecture a_rompc of rompc at 15( 272) + 0 on 736;
-file . "precontrolunit.vhd" "20170430174814.000" "20170430165244.636":
-  entity precontrolunit at 1( 0) + 0 on 739;
-  architecture a_precontrolunit of precontrolunit at 15( 312) + 0 on 740;
+file . "rom_tb.vhd" "20170430171350.000" "20170505195842.004":
+  entity rom_tb at 1( 0) + 0 on 757;
+  architecture a_rom_tb of rom_tb at 8( 100) + 0 on 758;
+file . "tff_tb.vhd" "20170430034434.000" "20170505195842.166":
+  entity tff_tb at 1( 0) + 0 on 761;
+  architecture a_tff_tb of tff_tb at 8( 100) + 0 on 762;
+file . "program_counter_tb.vhd" "20170430055804.000" "20170505195842.369":
+  entity program_counter_tb at 1( 0) + 0 on 765;
+  architecture a_program_counter_tb of program_counter_tb at 8( 112) + 0 on 766;
+file . "reg8bits_tb.vhd" "20170430055628.000" "20170505195841.806":
+  entity reg8bits_tb at 1( 0) + 0 on 753;
+  architecture a_reg8bits_tb of reg8bits_tb at 8( 105) + 0 on 754;
+file . "rompc.vhd" "20170430171054.000" "20170505195842.493":
+  entity rompc at 1( 0) + 0 on 767;
+  architecture a_rompc of rompc at 15( 272) + 0 on 768;
+file . "precontrolunit.vhd" "20170430174814.000" "20170505195842.700":
+  entity precontrolunit at 1( 0) + 0 on 771;
+  architecture a_precontrolunit of precontrolunit at 15( 312) + 0 on 772;

@@ -14,16 +14,16 @@ end entity;
 architecture a_rom of rom is
 	type mem is array (0 to 255) of unsigned(13 downto 0);
 	constant conteudo_rom : mem := (
-	0   => "00000000000010", -- Nada
-	1   => "00100000000000", -- Nada
-	2   => "11110000000100", -- Jump para instrução 4
+	0   => "10000000000010", -- Jump para instrução 2
+	1   => "00000000000000", -- Nada
+	2   => "10000000000100", -- Jump para instrução 4
 	3   => "00000000000000",
-	4   => "00100000000000", -- Nada
-	5   => "00000000000010", -- Nada
-	6   => "00111100000011", -- Nada
-	7   => "00000000000010", -- Nada
+	4   => "00000000000010", -- Nada
+	5   => "00000000000000", -- Nada
+	6   => "00000000000010", -- Nada
+	7   => "00000000000000", -- Nada
 	8   => "00000000000010", -- Nada
-	9   => "11110000000000", -- Jump para instrução 0
+	9   => "10000000000000", -- Jump para instrução 0
 	others => (others => '0')
 	);
 begin

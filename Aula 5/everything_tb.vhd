@@ -8,29 +8,36 @@ end;
 architecture a_everything_tb of everything_tb is
 	component everything is
 		port (
-			clk : in std_logic;
-			rst : in std_logic;
-			
-			-- Debug
-			pc   : out unsigned(7 downto 0);
-			inst : out unsigned(13 downto 0);
-			est  : out unsigned(1 downto 0)
+			rst          : in std_logic;
+			clk          : in std_logic;
+			est          : out unsigned(1 downto 0);
+			pc           : out unsigned(7 downto 0);
+			inst         : out unsigned(13 downto 0);
+			read_data1_o : out unsigned(15 downto 0);
+			read_data2_o : out unsigned(15 downto 0);
+			alu_out      : out unsigned(15 downto 0)
 		);
 	end component;
 	
-	signal clk  : std_logic;
-	signal rst  : std_logic;
-	signal pc   : unsigned(7 downto 0);
-	signal inst : unsigned(13 downto 0);
-	signal est  : unsigned(1 downto 0);
+	signal rst: std_logic;
+	signal clk: std_logic;
+	signal est: unsigned(1 downto 0);
+	signal pc: unsigned(7 downto 0);
+	signal inst: unsigned(13 downto 0);
+	signal read_data1_o: unsigned(15 downto 0);
+	signal read_data2_o: unsigned(15 downto 0);
+	signal alu_out: unsigned(15 downto 0);
 	
 begin
 	uut: everything port map (
-		clk => clk,
 		rst => rst,
-		pc => pc,
+		clk => clk,
+		est => est,
+		pc  => pc,
 		inst => inst,
-		est => est
+		read_data1_o => read_data1_o,
+		read_data2_o => read_data2_o,
+		alu_out => alu_out
 	);
 
 	process
