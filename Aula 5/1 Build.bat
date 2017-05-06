@@ -57,6 +57,13 @@ ghdl -a rom_tb.vhd
 ghdl -e rom_tb
 ghdl -r rom_tb --wave=gtkwave\rom_tb.ghw --stop-time=1500ns
 
+echo Building sign_extend_imm + testbench
+ghdl -a sign_extend_imm.vhd
+ghdl -e sign_extend_imm
+ghdl -a sign_extend_imm_tb.vhd
+ghdl -e sign_extend_imm_tb
+ghdl -r sign_extend_imm_tb --wave=gtkwave\sign_extend_imm.ghw
+
 echo Building everything + testbench
 ghdl -a everything.vhd
 ghdl -e everything

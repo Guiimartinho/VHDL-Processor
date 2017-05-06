@@ -60,6 +60,13 @@ architecture a_everything of everything is
 		);
 	end component;
 	
+	component sign_extend_imm is
+		port (
+			data_in  : in unsigned(6 downto 0);
+			data_out : out unsigned(15 downto 0)
+		);
+	end component;
+	
 	component maq_estados is -- Maquina de estados
 		port( 
 			clk,rst: in std_logic;
@@ -92,13 +99,13 @@ architecture a_everything of everything is
 	signal mem_read_s: std_logic;
 	signal instruction_s: unsigned(13 downto 0);
 	signal jump_addr: unsigned(7 downto 0);
+	signal immediate7bits: unsigned(6 downto 0);
 	signal immediate: unsigned(15 downto 0);
 	
 	-- Sinais de estado
 	signal state_s: unsigned(1 downto 0);
 	
 	-- Sinais da ULA
-	signal alu_input1: unsigned(15 downto 0);
 	signal alu_input2: unsigned(15 downto 0);
 	signal alu_op_s: unsigned(1 downto 0);
 	signal alu_output: unsigned(15 downto 0);
@@ -154,6 +161,11 @@ begin
 		read_data2 => read_data2_s  -- Eh o valor do Rs
 	);
 	
+	sign_ex: sign_extend_imm port map (
+		data_in  => immediate7bits,
+		data_out => immediate
+	);
+	
 	fsm: maq_estados port map (
 		estado => state_s,
 		clk    => clk,
@@ -172,14 +184,19 @@ begin
 		mem_read    => mem_read_s
 	);
 	
+	read_reg1_s <= instruction_s(2 downto 0); -- Rd
+	read_reg2_s <= instruction_s(5 downto 3); -- Rs
+	
 	jump_addr <= instruction_s(7 downto 0);
 	pc_next <= pc_plus_1 when jump_en_s = '0' else jump_addr;
 	
-	alu_input2 <= read_data2_s when alu_src_b_s = '0' else "0000000000000000"; -- TODO: Troca esse zero por imediato com sign extend.
+	immediate7bits <= instruction_s(9 downto 3);
+	
+	alu_input2 <= read_data2_s when alu_src_b_s = '0' else immediate; -- TODO: Troca esse zero por imediato com sign extend.
 	
 	write_data_s <= alu_output when reg_write_source_s = "00" else
 					read_data2_s when reg_write_source_s = "01" else
-					"0000000000000000" when reg_write_source_s = "10" else -- TODO: Troca esse zero por imediato com sign extend.
+					immediate when reg_write_source_s = "10" else -- TODO: Troca esse zero por imediato com sign extend.
 					"0000000000000000"; -- Aqui é pra ser o caso de memória de dados, mas não é pra fazer nesse lab.
 	
 	--Pinos do top-level
