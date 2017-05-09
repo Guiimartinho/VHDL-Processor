@@ -2,17 +2,26 @@
 
 mkdir gtkwave
 
-echo Building add_1
+echo Building add_1 + testbench
 ghdl -a add_1.vhd
 ghdl -e add_1
+ghdl -a add_1_tb.vhd
+ghdl -e add_1_tb
+ghdl -r add_1_tb --wave=gtkwave\add_1_tb.ghw
 
-echo Building alu16bits
+echo Building alu16bits + testbench
 ghdl -a alu16bits.vhd
 ghdl -e alu16bits
+ghdl -a alu16bits_tb.vhd
+ghdl -e alu16bits_tb
+ghdl -r alu16bits_tb --wave=gtkwave\alu16bits_tb.ghw
 
 echo Building controlunit
 ghdl -a controlunit.vhd
 ghdl -e controlunit
+ghdl -a controlunit_tb.vhd
+ghdl -e controlunit_tb
+ghdl -r controlunit_tb --wave=gtkwave\controlunit_tb.ghw
 
 echo Building demux3x8 + testbench
 ghdl -a demux3x8.vhd
@@ -42,13 +51,19 @@ ghdl -a reg8bits_tb.vhd
 ghdl -e reg8bits_tb
 ghdl -r reg8bits_tb --wave=gtkwave\reg8bits_tb.ghw --stop-time=500ns
 
-echo Building reg16bits
+echo Building reg16bits + testbench
 ghdl -a reg16bits.vhd
 ghdl -e reg16bits
+ghdl -a reg16bits_tb.vhd
+ghdl -e reg16bits_tb
+ghdl -r reg16bits_tb --wave=gtkwave\reg16bits_tb.ghw --stop-time=500ns
 
-echo Building regbank16bits
+echo Building regbank16bits + testbench
 ghdl -a regbank16bits.vhd
 ghdl -e regbank16bits
+ghdl -a regbank16bits_tb.vhd
+ghdl -e regbank16bits_tb
+ghdl -r regbank16bits_tb --wave=gtkwave\regbank16bits_tb.ghw --stop-time=3500ns
 
 echo Building rom + testbench
 ghdl -a rom.vhd
