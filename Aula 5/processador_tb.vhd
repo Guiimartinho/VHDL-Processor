@@ -2,11 +2,11 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity everything_tb is
+entity processador_tb is
 end;
 
-architecture a_everything_tb of everything_tb is
-	component everything is
+architecture a_processador_tb of processador_tb is
+	component processador is
 		port (
 			rst          : in std_logic;
 			clk          : in std_logic;
@@ -29,7 +29,7 @@ architecture a_everything_tb of everything_tb is
 	signal alu_out: unsigned(15 downto 0);
 	
 begin
-	uut: everything port map (
+	uut: processador port map (
 		rst => rst,
 		clk => clk,
 		est => est,

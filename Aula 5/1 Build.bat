@@ -64,11 +64,11 @@ ghdl -a sign_extend_imm_tb.vhd
 ghdl -e sign_extend_imm_tb
 ghdl -r sign_extend_imm_tb --wave=gtkwave\sign_extend_imm.ghw
 
-echo Building everything + testbench
-ghdl -a everything.vhd
-ghdl -e everything
-ghdl -a everything_tb.vhd
-ghdl -e everything_tb
-ghdl -r everything_tb --wave=gtkwave\everything_tb.ghw --stop-time=4000ns
+echo Building processador + testbench
+ghdl -a processador.vhd
+ghdl -e processador
+ghdl -a processador_tb.vhd
+ghdl -e processador_tb
+ghdl -r processador_tb --wave=gtkwave\processador_tb.ghw --stop-time=6000ns
 
 pause

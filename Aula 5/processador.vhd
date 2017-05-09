@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity everything is
+entity processador is
 	port (
 		rst          : in std_logic;
 		clk          : in std_logic;
@@ -15,7 +15,7 @@ entity everything is
 	);
 end entity;
 
-architecture a_everything of everything is
+architecture a_processador of processador is
 	component reg8bits is -- PC
 		port (
 			data_in  : in unsigned(7 downto 0);
@@ -78,7 +78,7 @@ architecture a_everything of everything is
 		port (
 			state       : in unsigned(1 downto 0);
 			instruction : in unsigned(13 downto 0);
-			jump_en     : out std_logic;
+			branch_en     : out std_logic;
 			alu_op      : out unsigned(1 downto 0);
 			alu_src_b   : out std_logic;
 			reg_write_source: out unsigned(1 downto 0);
@@ -93,12 +93,12 @@ architecture a_everything of everything is
 	signal pc_plus_1: unsigned(7 downto 0);
 	signal pc_next: unsigned(7 downto 0);
 	signal pc_write_s: std_logic;
-	signal jump_en_s: std_logic;
+	signal branch_en_s: std_logic;
 	
 	-- Sinais da memória de instruções
 	signal mem_read_s: std_logic;
 	signal instruction_s: unsigned(13 downto 0);
-	signal jump_addr: unsigned(7 downto 0);
+	signal branch_addr: unsigned(7 downto 0);
 	signal immediate7bits: unsigned(6 downto 0);
 	signal immediate: unsigned(15 downto 0);
 	
@@ -175,7 +175,7 @@ begin
 	un_controle: controlunit port map (
 		state       => state_s,
 		instruction => instruction_s,
-		jump_en     => jump_en_s,
+		branch_en     => branch_en_s,
 		pc_write    => pc_write_s,
 		alu_op      => alu_op_s,
 		alu_src_b   => alu_src_b_s,
@@ -187,8 +187,8 @@ begin
 	read_reg1_s <= instruction_s(2 downto 0); -- Rd
 	read_reg2_s <= instruction_s(5 downto 3); -- Rs
 	
-	jump_addr <= instruction_s(7 downto 0);
-	pc_next <= pc_plus_1 when jump_en_s = '0' else jump_addr;
+	branch_addr <= instruction_s(7 downto 0);
+	pc_next <= pc_plus_1 when branch_en_s = '0' else branch_addr;
 	
 	immediate7bits <= instruction_s(9 downto 3);
 	

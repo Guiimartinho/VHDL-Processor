@@ -7,7 +7,7 @@ entity controlunit is
 		state       : in unsigned(1 downto 0);
 		instruction : in unsigned(13 downto 0);
 		
-		jump_en     : out std_logic;
+		branch_en     : out std_logic;
 		
 		alu_op      : out unsigned(1 downto 0);
 		alu_src_b   : out std_logic;
@@ -25,7 +25,7 @@ architecture a_controlunit of controlunit is
 begin
 	opcode <= instruction(13 downto 10);
 	
-	jump_en <= '1' when opcode="1000" else '0';
+	branch_en <= '1' when opcode="1101" else '0';
 	
 	alu_op <= "00" when opcode="0000" or opcode="0001" else -- ADD
 			  "01" when opcode="0010" or opcode="0011" or opcode="1100" else -- SUB ou CMP
