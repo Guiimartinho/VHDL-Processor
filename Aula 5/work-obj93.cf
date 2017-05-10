@@ -1,79 +1,79 @@
 v 3
-file . "controlunit_tb.vhd" "20170509165510.000" "20170509135533.770":
-  entity controlunit_tb at 1( 0) + 0 on 841;
-  architecture a_controlunit_tb of controlunit_tb at 8( 108) + 0 on 842;
-file . "regbank16bits_tb.vhd" "20170428004414.000" "20170509135535.104":
-  entity regbank16bits_tb at 1( 0) + 0 on 865;
-  architecture a_regbank16bits_tb of regbank16bits_tb at 8( 110) + 0 on 866;
-file . "reg16bits_tb.vhd" "20170428004414.000" "20170509135534.901":
-  entity reg16bits_tb at 1( 0) + 0 on 861;
-  architecture a_reg16bits_tb of reg16bits_tb at 8( 106) + 0 on 862;
-file . "processador.vhd" "20170509150456.000" "20170509135535.714":
-  entity processador at 1( 0) + 0 on 875;
-  architecture a_processador of processador at 18( 440) + 0 on 876;
-file . "sign_extend_imm_tb.vhd" "20170505234558.000" "20170509135535.588":
-  entity sign_extend_imm_tb at 1( 0) + 0 on 873;
-  architecture a_sign_extend_imm_tb of sign_extend_imm_tb at 8( 112) + 0 on 874;
-file . "maq_estados_tb.vhd" "20170505230204.000" "20170509135534.260":
-  entity maq_estados_tb at 1( 0) + 0 on 849;
-  architecture a_maq_estados_tb of maq_estados_tb at 8( 108) + 0 on 850;
+file . "controlunit_tb.vhd" "20170509165510.000" "20170510151203.557":
+  entity controlunit_tb at 1( 0) + 0 on 889;
+  architecture a_controlunit_tb of controlunit_tb at 8( 108) + 0 on 890;
+file . "regbank16bits_tb.vhd" "20170428004414.000" "20170510151204.747":
+  entity regbank16bits_tb at 1( 0) + 0 on 913;
+  architecture a_regbank16bits_tb of regbank16bits_tb at 8( 110) + 0 on 914;
+file . "reg16bits_tb.vhd" "20170428004414.000" "20170510151204.565":
+  entity reg16bits_tb at 1( 0) + 0 on 909;
+  architecture a_reg16bits_tb of reg16bits_tb at 8( 106) + 0 on 910;
+file . "processador.vhd" "20170509150456.000" "20170510151205.316":
+  entity processador at 1( 0) + 0 on 923;
+  architecture a_processador of processador at 18( 440) + 0 on 924;
+file . "sign_extend_imm_tb.vhd" "20170505234558.000" "20170510151205.213":
+  entity sign_extend_imm_tb at 1( 0) + 0 on 921;
+  architecture a_sign_extend_imm_tb of sign_extend_imm_tb at 8( 112) + 0 on 922;
+file . "maq_estados_tb.vhd" "20170505230204.000" "20170510151203.983":
+  entity maq_estados_tb at 1( 0) + 0 on 897;
+  architecture a_maq_estados_tb of maq_estados_tb at 8( 108) + 0 on 898;
 file . "everything.vhd" "20170506000542.000" "20170505210550.011":
   entity everything at 1( 0) + 0 on 591;
   architecture a_everything of everything at 18( 439) + 0 on 592;
-file . "mux8x3_tb.vhd" "20170428004414.000" "20170509135534.464":
-  entity mux8x3_tb at 1( 0) + 0 on 853;
-  architecture a_mux8x3_tb of mux8x3_tb at 8( 103) + 0 on 854;
-file . "rom_tb.vhd" "20170501162134.000" "20170509135535.385":
-  entity rom_tb at 1( 0) + 0 on 869;
-  architecture a_rom_tb of rom_tb at 8( 93) + 0 on 870;
-file . "regbank16bits.vhd" "20170505224214.000" "20170509135535.026":
-  entity regbank16bits at 1( 0) + 0 on 863;
-  architecture a_regbank16bits of regbank16bits at 14( 320) + 0 on 864;
-file . "reg8bits_tb.vhd" "20170501162134.000" "20170509135534.698":
-  entity reg8bits_tb at 1( 0) + 0 on 857;
-  architecture a_reg8bits_tb of reg8bits_tb at 8( 98) + 0 on 858;
-file . "maq_estados.vhd" "20170504192826.000" "20170509135534.182":
-  entity maq_estados at 1( 0) + 0 on 847;
-  architecture a_maq_estados of maq_estados at 11( 184) + 0 on 848;
-file . "demux3x8.vhd" "20170428004414.000" "20170509135533.957":
-  entity demux3x8 at 1( 0) + 0 on 843;
-  architecture a_demux3x8 of demux3x8 at 13( 237) + 0 on 844;
-file . "alu16bits.vhd" "20170504220800.000" "20170509135533.489":
-  entity alu16bits at 1( 0) + 0 on 835;
-  architecture a_alu16bits of alu16bits at 14( 296) + 0 on 836;
-file . "add_1.vhd" "20170501162134.000" "20170509135533.286":
-  entity add_1 at 1( 0) + 0 on 831;
-  architecture a_add_1 of add_1 at 12( 181) + 0 on 832;
-file . "controlunit.vhd" "20170509150410.000" "20170509135533.692":
-  entity controlunit at 1( 0) + 0 on 839;
-  architecture a_controlunit of controlunit at 23( 456) + 0 on 840;
-file . "demux3x8_tb.vhd" "20170428004414.000" "20170509135534.035":
-  entity demux3x8_tb at 1( 0) + 0 on 845;
-  architecture a_demux3x8_tb of demux3x8_tb at 8( 105) + 0 on 846;
-file . "reg8bits.vhd" "20170501162134.000" "20170509135534.620":
-  entity reg8bits at 1( 0) + 0 on 855;
-  architecture a_reg8bits of reg8bits at 15( 258) + 0 on 856;
-file . "reg16bits.vhd" "20170428004414.000" "20170509135534.823":
-  entity reg16bits at 1( 0) + 0 on 859;
-  architecture a_reg16bits of reg16bits at 15( 275) + 0 on 860;
-file . "rom.vhd" "20170509150512.000" "20170509135535.307":
-  entity rom at 1( 0) + 0 on 867;
-  architecture a_rom of rom at 14( 253) + 0 on 868;
-file . "mux8x3.vhd" "20170428004414.000" "20170509135534.385":
-  entity mux8x3 at 1( 0) + 0 on 851;
-  architecture a_mux8x3 of mux8x3 at 13( 259) + 0 on 852;
+file . "mux8x3_tb.vhd" "20170428004414.000" "20170510151204.167":
+  entity mux8x3_tb at 1( 0) + 0 on 901;
+  architecture a_mux8x3_tb of mux8x3_tb at 8( 103) + 0 on 902;
+file . "rom_tb.vhd" "20170501162134.000" "20170510151205.012":
+  entity rom_tb at 1( 0) + 0 on 917;
+  architecture a_rom_tb of rom_tb at 8( 93) + 0 on 918;
+file . "regbank16bits.vhd" "20170505224214.000" "20170510151204.669":
+  entity regbank16bits at 1( 0) + 0 on 911;
+  architecture a_regbank16bits of regbank16bits at 14( 320) + 0 on 912;
+file . "reg8bits_tb.vhd" "20170501162134.000" "20170510151204.377":
+  entity reg8bits_tb at 1( 0) + 0 on 905;
+  architecture a_reg8bits_tb of reg8bits_tb at 8( 98) + 0 on 906;
+file . "maq_estados.vhd" "20170504192826.000" "20170510151203.919":
+  entity maq_estados at 1( 0) + 0 on 895;
+  architecture a_maq_estados of maq_estados at 11( 184) + 0 on 896;
+file . "demux3x8.vhd" "20170428004414.000" "20170510151203.726":
+  entity demux3x8 at 1( 0) + 0 on 891;
+  architecture a_demux3x8 of demux3x8 at 13( 237) + 0 on 892;
+file . "alu16bits.vhd" "20170504220800.000" "20170510151203.297":
+  entity alu16bits at 1( 0) + 0 on 883;
+  architecture a_alu16bits of alu16bits at 14( 296) + 0 on 884;
+file . "add_1.vhd" "20170501162134.000" "20170510151203.132":
+  entity add_1 at 1( 0) + 0 on 879;
+  architecture a_add_1 of add_1 at 12( 181) + 0 on 880;
+file . "controlunit.vhd" "20170509150410.000" "20170510151203.495":
+  entity controlunit at 1( 0) + 0 on 887;
+  architecture a_controlunit of controlunit at 23( 456) + 0 on 888;
+file . "demux3x8_tb.vhd" "20170428004414.000" "20170510151203.788":
+  entity demux3x8_tb at 1( 0) + 0 on 893;
+  architecture a_demux3x8_tb of demux3x8_tb at 8( 105) + 0 on 894;
+file . "reg8bits.vhd" "20170501162134.000" "20170510151204.302":
+  entity reg8bits at 1( 0) + 0 on 903;
+  architecture a_reg8bits of reg8bits at 15( 258) + 0 on 904;
+file . "reg16bits.vhd" "20170428004414.000" "20170510151204.484":
+  entity reg16bits at 1( 0) + 0 on 907;
+  architecture a_reg16bits of reg16bits at 15( 275) + 0 on 908;
+file . "rom.vhd" "20170510181156.000" "20170510151204.938":
+  entity rom at 1( 0) + 0 on 915;
+  architecture a_rom of rom at 14( 253) + 0 on 916;
+file . "mux8x3.vhd" "20170428004414.000" "20170510151204.088":
+  entity mux8x3 at 1( 0) + 0 on 899;
+  architecture a_mux8x3 of mux8x3 at 13( 259) + 0 on 900;
 file . "everything_tb.vhd" "20170505230444.000" "20170505210550.089":
   entity everything_tb at 1( 0) + 0 on 593;
   architecture a_everything_tb of everything_tb at 8( 100) + 0 on 594;
-file . "sign_extend_imm.vhd" "20170505234214.000" "20170509135535.510":
-  entity sign_extend_imm at 1( 0) + 0 on 871;
-  architecture a_sign_extend_imm of sign_extend_imm at 12( 209) + 0 on 872;
-file . "processador_tb.vhd" "20170509143314.000" "20170509135535.791":
-  entity processador_tb at 1( 0) + 0 on 877;
-  architecture a_processador_tb of processador_tb at 8( 101) + 0 on 878;
-file . "add_1_tb.vhd" "20170509163338.000" "20170509135533.364":
-  entity add_1_tb at 1( 0) + 0 on 833;
-  architecture a_add_1_tb of add_1_tb at 8( 102) + 0 on 834;
-file . "alu16bits_tb.vhd" "20170509164002.000" "20170509135533.567":
-  entity alu16bits_tb at 1( 0) + 0 on 837;
-  architecture a_alu16bits_tb of alu16bits_tb at 8( 106) + 0 on 838;
+file . "sign_extend_imm.vhd" "20170505234214.000" "20170510151205.134":
+  entity sign_extend_imm at 1( 0) + 0 on 919;
+  architecture a_sign_extend_imm of sign_extend_imm at 12( 209) + 0 on 920;
+file . "processador_tb.vhd" "20170509143314.000" "20170510151205.388":
+  entity processador_tb at 1( 0) + 0 on 925;
+  architecture a_processador_tb of processador_tb at 8( 101) + 0 on 926;
+file . "add_1_tb.vhd" "20170509163338.000" "20170510151203.195":
+  entity add_1_tb at 1( 0) + 0 on 881;
+  architecture a_add_1_tb of add_1_tb at 8( 102) + 0 on 882;
+file . "alu16bits_tb.vhd" "20170509164002.000" "20170510151203.383":
+  entity alu16bits_tb at 1( 0) + 0 on 885;
+  architecture a_alu16bits_tb of alu16bits_tb at 8( 106) + 0 on 886;
