@@ -1,0 +1,43 @@
+v 3
+file . "somador8bitsPC.vhd" "20170517143646.000" "20170517113831.674":
+  entity somador8bitspc at 1( 0) + 0 on 91;
+  architecture a_somador8bitspc of somador8bitspc at 13( 268) + 0 on 92;
+file . "sign_extend_imm.vhd" "20170510212556.000" "20170517113832.181":
+  entity sign_extend_imm at 1( 0) + 0 on 109;
+  architecture a_sign_extend_imm of sign_extend_imm at 12( 198) + 0 on 110;
+file . "regbank16bits.vhd" "20170510212556.000" "20170517113832.065":
+  entity regbank16bits at 1( 0) + 0 on 105;
+  architecture a_regbank16bits of regbank16bits at 14( 307) + 0 on 106;
+file . "reg8bits.vhd" "20170510212556.000" "20170517113831.955":
+  entity reg8bits at 1( 0) + 0 on 101;
+  architecture a_reg8bits of reg8bits at 15( 258) + 0 on 102;
+file . "maq_estados.vhd" "20170510212556.000" "20170517113831.844":
+  entity maq_estados at 1( 0) + 0 on 97;
+  architecture a_maq_estados of maq_estados at 11( 174) + 0 on 98;
+file . "alu16bits.vhd" "20170510212556.000" "20170517113831.616":
+  entity alu16bits at 1( 0) + 0 on 89;
+  architecture a_alu16bits of alu16bits at 14( 283) + 0 on 90;
+file . "add_1.vhd" "20170510212556.000" "20170517113831.557":
+  entity add_1 at 1( 0) + 0 on 87;
+  architecture a_add_1 of add_1 at 12( 181) + 0 on 88;
+file . "demux3x8.vhd" "20170510212556.000" "20170517113831.787":
+  entity demux3x8 at 1( 0) + 0 on 95;
+  architecture a_demux3x8 of demux3x8 at 13( 225) + 0 on 96;
+file . "mux8x3.vhd" "20170510212556.000" "20170517113831.899":
+  entity mux8x3 at 1( 0) + 0 on 99;
+  architecture a_mux8x3 of mux8x3 at 13( 247) + 0 on 100;
+file . "reg16bits.vhd" "20170510212556.000" "20170517113832.010":
+  entity reg16bits at 1( 0) + 0 on 103;
+  architecture a_reg16bits of reg16bits at 15( 261) + 0 on 104;
+file . "rom.vhd" "20170511202236.000" "20170517113832.124":
+  entity rom at 1( 0) + 0 on 107;
+  architecture a_rom of rom at 14( 240) + 0 on 108;
+file . "processador_tb.vhd" "20170510212556.000" "20170517113832.304":
+  entity processador_tb at 1( 0) + 0 on 113;
+  architecture a_processador_tb of processador_tb at 8( 101) + 0 on 114;
+file . "controlunit.vhd" "20170517143652.000" "20170517113831.731":
+  entity controlunit at 1( 0) + 0 on 93;
+  architecture a_controlunit of controlunit at 24( 487) + 0 on 94;
+file . "processador.vhd" "20170517143828.000" "20170517113832.237":
+  entity processador at 1( 0) + 0 on 111;
+  architecture a_processador of processador at 18( 440) + 0 on 112;
