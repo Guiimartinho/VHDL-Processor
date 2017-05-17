@@ -7,7 +7,8 @@ entity controlunit is
 		state       : in unsigned(1 downto 0);
 		instruction : in unsigned(13 downto 0);
 		
-		branch_en     : out std_logic;
+		branch_en   : out std_logic;
+        jmp_en      : out std_logic;
 		
 		alu_op      : out unsigned(1 downto 0);
 		alu_src_b   : out std_logic;
@@ -17,7 +18,9 @@ entity controlunit is
 		
 		pc_write    : out std_logic;
 		flags_write : out std_logic;
-		mem_read    : out std_logic
+		mem_read    : out std_logic;
+        
+        zeroFlag, overflowFlag, negativeFlag: in std_logic
 	);
 end entity;
 
@@ -27,6 +30,11 @@ begin
 	opcode <= instruction(13 downto 10);
 	
 	branch_en <= '1' when opcode="1101" else '0';
+    jmp_en <= '1' when opcode="1000" or 
+                        (opcode="1001" and negativeFlag = '1') or 
+                        (opcode="1010" and zeroFlag = '1') or 
+                        (opcode="1011" and zeroFlag = '0') 
+                        else '0';
 	
 	alu_op <= "00" when opcode="0000" or opcode="0001" else -- ADD
 			  "01" when opcode="0010" or opcode="0011" or opcode="1100" else -- SUB ou CMP

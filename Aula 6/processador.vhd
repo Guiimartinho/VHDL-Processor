@@ -78,14 +78,16 @@ architecture a_processador of processador is
 		port (
 			state       : in unsigned(1 downto 0);
 			instruction : in unsigned(13 downto 0);
-			branch_en     : out std_logic;
+			branch_en   : out std_logic;
+            jmp_en      : out std_logic;
 			alu_op      : out unsigned(1 downto 0);
 			alu_src_b   : out std_logic;
 			reg_write_source: out unsigned(1 downto 0);
 			reg_write   : out std_logic;
 			pc_write    : out std_logic;
 			flags_write : out std_logic;
-			mem_read    : out std_logic
+			mem_read    : out std_logic;
+            zeroFlag, overflowFlag, negativeFlag: in std_logic
 		);
 	end component;
     
@@ -93,7 +95,7 @@ architecture a_processador of processador is
         port (
             pc_in: in unsigned(7 downto 0);
             add_address: in unsigned(7 downto 0);
-            pc_result: out unsigned(7 downto 0)
+            jmp_addr: out unsigned(7 downto 0)
         );
     end component;
 	
@@ -103,6 +105,7 @@ architecture a_processador of processador is
 	signal pc_next: unsigned(7 downto 0);
 	signal pc_write_s: std_logic;
 	signal branch_en_s: std_logic;
+    signal jmp_en_s: std_logic;
 	
 	-- Sinais da memória de instruções
 	signal mem_read_s: std_logic;
@@ -141,7 +144,7 @@ architecture a_processador of processador is
 	signal Zflag_out: std_logic;
     
     -- Sinais do somador de 8 bits pra branch no PC
-    signal pc_result_s: unsigned(7 downto 0);
+    signal jmp_addr_s: unsigned(7 downto 0);
 	
 begin
 	pc_reg: reg8bits port map (
@@ -151,13 +154,6 @@ begin
 		wr_en    => pc_write_s,
 		rst      => rst
 	);
-    
-	-- Comentado pra evitar treta
-    -- pc_address_add: somador8bitsPC port map ( 
-        -- pc_in => pc_value, -- São esses os signals?
-        -- add_address => , -- Não tenho ctz, tem um branch_addr mas isso já eh o endereço final pelo q parece
-        -- pc_result => pc_result_s -- Isso aqui DEVERIA ir pro PC se a condição PC recebe endereço somado
-    -- );
     
 	pc_inc: add_1 port map (
 		input  => pc_value,
@@ -215,21 +211,33 @@ begin
 	un_controle: controlunit port map (
 		state       => state_s,
 		instruction => instruction_s,
-		branch_en     => branch_en_s,
+		branch_en   => branch_en_s,
+        jmp_en      => jmp_en_s,
 		pc_write    => pc_write_s,
 		alu_op      => alu_op_s,
 		alu_src_b   => alu_src_b_s,
 		reg_write_source => reg_write_source_s,
 		reg_write   => reg_write_s,
 		flags_write => flags_wr_en,
-		mem_read    => mem_read_s
+		mem_read    => mem_read_s,
+        zeroFlag    => Zflag_out,
+        overflowFlag    => Vflag_out,
+        negativeFlag    => Nflag_out
 	);
+    
+    pc_address_add: somador8bitsPC port map ( 
+        pc_in => pc_value, 
+        add_address => branch_addr, -- WORKS I GUESS
+        jmp_addr => jmp_addr_s
+    );
 	
 	read_reg1_s <= instruction_s(2 downto 0); -- Rd
 	read_reg2_s <= instruction_s(5 downto 3); -- Rs
 	
 	branch_addr <= instruction_s(7 downto 0);
-	pc_next <= pc_plus_1 when branch_en_s = '0' else branch_addr;
+	pc_next <= branch_addr when branch_en_s = '1' else 
+                jmp_addr_s when jmp_en_s = '1' else 
+                pc_plus_1;
 	
 	immediate7bits <= instruction_s(9 downto 3);
 	
