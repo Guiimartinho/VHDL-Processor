@@ -226,7 +226,7 @@ begin
 	);
     
     pc_address_add: somador8bitsPC port map ( 
-        pc_in => pc_value, 
+        pc_in => pc_next, 
         add_address => branch_addr, -- WORKS I GUESS
         jmp_addr => jmp_addr_s
     );
