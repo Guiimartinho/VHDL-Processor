@@ -50,7 +50,7 @@ begin
 	reg_write_source <= "00" when opcode="0000" or opcode="0001" or opcode="0010" or opcode="0011" else -- ADD ou SUB (pega o dado da ULA)
 						"01" when opcode="0100" else -- MOV Rs, Rd (pega o dado do banco de registradores)
 						"10" when opcode="0101" else -- MOV #imm, Rd (pega o dado da instrução)
-						"00"; -- Ainda não implementadas instruções de memória
+						"11"; -- Ainda não implementadas instruções de memória
 	
 	reg_write <= '1' when state = "10" and (opcode="0000" or opcode="0001" or opcode="0010" or opcode="0011" or opcode="0100" or opcode="0101" or opcode="0110") else -- Operações que escrevem no banco de registradores
 				 '0'; -- Qualquer outra operação
