@@ -41,6 +41,16 @@ architecture a_processador of processador is
 			dado     : out unsigned(13 downto 0)
 		);
 	end component;
+
+	component ram is -- Memoria de dados
+		port (
+			clk      : in std_logic;
+			wr_en    : in std_logic;
+			endereco : in unsigned(15 downto 0);
+			dado_in  : in unsigned(15 downto 0);
+			dado_out : out unsigned(15 downto 0)
+		);
+	end component;
 	
 	component alu16bits is -- Unidade Lógica e Aritmética
 		port (
@@ -79,15 +89,17 @@ architecture a_processador of processador is
 			state       : in unsigned(1 downto 0);
 			instruction : in unsigned(13 downto 0);
 			branch_en   : out std_logic;
-            jmp_en      : out std_logic;
+			jmp_en      : out std_logic;
 			alu_op      : out unsigned(1 downto 0);
 			alu_src_b   : out std_logic;
 			reg_write_source: out unsigned(1 downto 0);
 			reg_write   : out std_logic;
 			pc_write    : out std_logic;
 			flags_write : out std_logic;
-			mem_read    : out std_logic;
-            zeroFlag, overflowFlag, negativeFlag: in std_logic
+			rom_read    : out std_logic;
+			ram_write   : out std_logic;
+			ram_addr_sel: out std_logic;
+			zeroFlag, overflowFlag, negativeFlag: in std_logic
 		);
 	end component;
     
@@ -108,7 +120,7 @@ architecture a_processador of processador is
     signal jmp_en_s: std_logic;
 	
 	-- Sinais da memória de instruções
-	signal mem_read_s: std_logic;
+	signal rom_read_s: std_logic;
 	signal instruction_s: unsigned(13 downto 0);
 	signal branch_addr: unsigned(7 downto 0);
 	signal immediate7bits: unsigned(6 downto 0);
@@ -146,6 +158,12 @@ architecture a_processador of processador is
     -- Sinais do somador de 8 bits pra branch no PC
     signal jmp_addr_s: unsigned(7 downto 0);
 	
+	-- Sinais da RAM
+	signal ram_addr_sel_s: std_logic;
+	signal ram_address_s: unsigned(15 downto 0);
+	signal ram_write_s: std_logic;
+	signal ram_out_s: unsigned(15 downto 0);
+	
 begin
 	pc_reg: reg8bits port map (
 		data_in  => pc_next,
@@ -162,9 +180,17 @@ begin
 	
 	inst_mem: rom port map (
 		clk      => clk,
-		enable   => mem_read_s,
+		enable   => rom_read_s,
 		endereco => pc_value,
 		dado     => instruction_s
+	);
+	
+	data_mem: ram port map (
+		clk => clk,
+		wr_en => ram_write_s, -- Sinal de enable da control unit
+		endereco => ram_address_s, -- Rd ou Rs dependendo da instrucao
+		dado_in => read_data2_s,
+		dado_out => ram_out_s
 	);
 	
 	alu: alu16bits port map (
@@ -219,7 +245,9 @@ begin
 		reg_write_source => reg_write_source_s,
 		reg_write   => reg_write_s,
 		flags_write => flags_wr_en,
-		mem_read    => mem_read_s,
+		rom_read    => rom_read_s,
+		ram_write   => ram_write_s,
+		ram_addr_sel => ram_addr_sel_s,
         zeroFlag    => Zflag_out,
         overflowFlag    => Vflag_out,
         negativeFlag    => Nflag_out
@@ -243,10 +271,13 @@ begin
 	
 	alu_input2 <= read_data2_s when alu_src_b_s = '0' else immediate; -- TODO: Troca esse zero por imediato com sign extend.
 	
+	ram_address_s <= read_data2_s when ram_addr_sel_s = '1' else -- Valor de Rs
+					 read_data1_s; -- Valor de Rd
+	
 	write_data_s <= alu_output when reg_write_source_s = "00" else
 					read_data2_s when reg_write_source_s = "01" else
-					immediate when reg_write_source_s = "10" else -- TODO: Troca esse zero por imediato com sign extend.
-					"0000000000000000"; -- Aqui é pra ser o caso de memória de dados, mas não é pra fazer nesse lab.
+					immediate when reg_write_source_s = "10" else
+					ram_out_s;
 	
 	flags_in_s(7 downto 3) <= "00000";
 	flags_in_s(2) <= Vflag_in;
