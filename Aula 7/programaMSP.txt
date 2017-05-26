@@ -1,0 +1,26 @@
+		MOV #0, R1
+		MOV #32, R7		-- Tamanho maximo
+		
+write:	ADD #1, R1		-- Escreve os valores iniciais
+		MOV R1, @R1
+		CMP R7, R1
+		JN write
+		
+		MOV #2, R1		-- R1 eh um numero primo
+primo:	MOV R1, R2		-- R2 eh o iterador, iniciado com R1
+zerar:	ADD R1, R2		-- Pega a proxima posicao
+		CMP R2, R7		-- Verifica se estourou
+		JN next			-- Vai para o proximo primo se estourou
+		MOV R0, @R2		-- Zera um numero nao primo
+		CMP R7, R2		-- Verifica se já passou do limite
+		JN zerar		-- Se não passou, volta pro zerar
+		
+next:	ADD #1, R1		-- Vai para o proximo possivel primo
+		CMP R1, R7		-- Verifica se passou do limite
+		JN out			-- Se passou, significa que acabou o programa
+		MOV @R1, R3		-- Pega o valor da memoria na posicao do possivel primo
+		CMP R0, R3		-- Verifica se eh zero (ou seja, nao eh primo)
+		JZ next			-- Se nao for primo, volta pro next
+		JMP primo		-- Se for primo, volta pro loop principal
+
+out:	
