@@ -58,7 +58,7 @@ architecture a_rom of rom is
 	-- 21  => "00000000000000", -- out:	NOP
 	
 	0   => "01010000000100", -- 		MOV #0, R4
-	1   => "01010111111011", -- 		MOV #127, R3 -- Nesse aqui não toca mais
+	1   => "01010111111011", -- 		MOV #63, R3 -- Nesse aqui não toca mais
 	2   => "01110000100100", -- prench:	MOV R4, @R4 -- Coloca valor x em ram[x]
 	3   => "00010000001100", -- 		ADD #1, R4
 	4   => "11000000011100", -- 		CMP R3, R4
@@ -66,7 +66,7 @@ architecture a_rom of rom is
 	6   => "01010000001100", -- 		MOV #1, R4 -- Apenas pra iniciar o loop em 2
 	7   => "00010000001100", -- loop:	ADD #1, R4
 	8   => "11000000100011", -- 		CMP R4, R3 -- Condição de saida do for
-	9   => "10010000001001", -- 		JN acabo -- Aki sai do for se der a condição
+	9   => "10010000001001", -- 		JN print -- Aki sai do for se der a condição
 	10  => "01100000100101", -- 		MOV @R4, R5
 	11  => "11000000101000", -- 		CMP R5, R0
 	12  => "10100011111010", -- 		JEQ loop -- Equivalente if ram[i] == 0
@@ -76,7 +76,16 @@ architecture a_rom of rom is
 	16  => "10010011110110", -- 		JN loop -- Pula se o crivador ficar maior que 127
 	17  => "01110000000110", -- 		MOV R0, @R6
 	18  => "10000011111011", -- 		JMP addcri -- Loop while
-	19  => "00000000000000", -- acabo: -- Aki vai a saída pra "printa" os primos   
+	19  => "01010000001100", -- print:  MOV #1, R4 -- Resetar o R4
+	20  => "11000000100011", -- prntlp: CMP R4, R3
+	21  => "10010000000110", -- 		JN acabo
+	22  => "00010000001100", -- 		ADD #1, R4
+	23  => "01100000100010", -- 		MOV @R4, R2
+	24  => "11000000010000", -- 		CMP R2, R0
+	25  => "10100011111010", -- 		JEQ prntlp
+	26  => "01000000010111", -- 		MOV R2, R7
+	27  => "10000011111000", -- 		JMP prntlp
+	28  => "00000000000000", -- acabo:  NOP -- ACABOU!! ACABOU! É TETRA! É TEETRAAA!
 
 	others => (others => '0')
 	);
