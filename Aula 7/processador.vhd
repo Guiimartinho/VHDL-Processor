@@ -263,22 +263,23 @@ begin
 	read_reg2_s <= instruction_s(5 downto 3); -- Rs
 	
 	branch_addr <= instruction_s(7 downto 0);
-	pc_next <= branch_addr when branch_en_s = '1' else 
-                jmp_addr_s when jmp_en_s = '1' else 
-                pc_plus_1;
+	pc_next <= branch_addr when branch_en_s = '1' else -- PC será o valor do branch se for um branch
+                jmp_addr_s when jmp_en_s = '1' else -- PC será o valor do jump se for um jump e a condição for cumprida
+                pc_plus_1; -- Será o próximo valor se não ocorrer branch nem jump
 	
-	immediate7bits <= instruction_s(9 downto 3);
+	immediate7bits <= instruction_s(9 downto 3); -- Imediato da instrução
 	
-	alu_input2 <= read_data2_s when alu_src_b_s = '0' else immediate; -- TODO: Troca esse zero por imediato com sign extend.
+	alu_input2 <= read_data2_s when alu_src_b_s = '0' else immediate; -- Ler o valor do registrador ou o imediato da instrução
 	
 	ram_address_s <= read_data2_s when ram_addr_sel_s = '1' else -- Valor de Rs
 					 read_data1_s; -- Valor de Rd
 	
-	write_data_s <= alu_output when reg_write_source_s = "00" else
-					read_data2_s when reg_write_source_s = "01" else
-					immediate when reg_write_source_s = "10" else
-					ram_out_s;
-	
+    -- Dado a ser escrito
+	write_data_s <= alu_output when reg_write_source_s = "00" else -- Saída da ULA
+					read_data2_s when reg_write_source_s = "01" else -- Saída de um registrador
+					immediate when reg_write_source_s = "10" else -- Saída da instrução
+					ram_out_s; -- Saída da RAM
+	-- Registrador de flags
 	flags_in_s(7 downto 3) <= "00000";
 	flags_in_s(2) <= Vflag_in;
 	flags_in_s(1) <= Nflag_in;
