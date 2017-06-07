@@ -34,6 +34,7 @@ architecture a_rom of rom is
 	-- 8   => "01000000100101", -- 		MOV R4, R5
 	-- 9   => "01110000100000", -- 		MOV R4, @R0
 	
+	-- Primos (Victor)
 	-- 0   => "01010000000001", -- 		MOV #0, R1
 	-- 1   => "01010100000111", -- 		MOV #32, R7
 	-- 2   => "00010000001001", -- write:	ADD #1, R1
@@ -57,6 +58,7 @@ architecture a_rom of rom is
 	-- 20  => "10000011110010", -- 		JMP primo
 	-- 21  => "00000000000000", -- out:	NOP
 	
+	-- Primos (Angelo)
 	0   => "01010000000100", -- 		MOV #0, R4
 	1   => "01010111111011", -- 		MOV #63, R3 -- Nesse aqui não toca mais
 	2   => "01110000100100", -- prench:	MOV R4, @R4 -- Coloca valor x em ram[x]
@@ -65,7 +67,7 @@ architecture a_rom of rom is
 	5   => "10010011111100", -- 		JN prench
 	6   => "01010000001100", -- 		MOV #1, R4 -- Apenas pra iniciar o loop em 2
 	7   => "00010000001100", -- loop:	ADD #1, R4
-	8   => "11000000100011", -- 		CMP R4, R3 -- Condição de saida do for
+	8   => "11000000100011", -- 		CMP R4, R3 -- Condicao de saida do for
 	9   => "10010000001001", -- 		JN print -- Aki sai do for se der a condição
 	10  => "01100000100101", -- 		MOV @R4, R5
 	11  => "11000000101000", -- 		CMP R5, R0
@@ -77,15 +79,15 @@ architecture a_rom of rom is
 	17  => "01110000000110", -- 		MOV R0, @R6
 	18  => "10000011111011", -- 		JMP addcri -- Loop while
 	19  => "01010000001100", -- print:  MOV #1, R4 -- Resetar o R4
-	20  => "11000000100011", -- prntlp: CMP R4, R3
-	21  => "10010000000110", -- 		JN acabo
-	22  => "00010000001100", -- 		ADD #1, R4
+	20  => "00010000001100", -- prntlp: ADD #1, R4
+	21  => "11000000100011", -- 		CMP R4, R3
+	22  => "10010000000101", -- 		JN acabo
 	23  => "01100000100010", -- 		MOV @R4, R2
 	24  => "11000000010000", -- 		CMP R2, R0
 	25  => "10100011111010", -- 		JEQ prntlp
 	26  => "01000000010111", -- 		MOV R2, R7
 	27  => "10000011111000", -- 		JMP prntlp
-	28  => "00000000000000", -- acabo:  NOP -- ACABOU!! ACABOU! É TETRA! É TEETRAAA!
+	28  => "00000000000000", -- acabo:  NOP -- ACABOU!! ACABOU! EH TETRA! EH TEETRAAA!
 
 	others => (others => '0')
 	);

@@ -11,7 +11,8 @@ architecture a_controlunit_tb of controlunit_tb is
 			state       : in unsigned(1 downto 0);
 			instruction : in unsigned(13 downto 0);
 			
-			branch_en     : out std_logic;
+			branch_en   : out std_logic;
+			jmp_en      : out std_logic;
 			
 			alu_op      : out unsigned(1 downto 0);
 			alu_src_b   : out std_logic;
@@ -20,39 +21,51 @@ architecture a_controlunit_tb of controlunit_tb is
 			reg_write   : out std_logic;
 			
 			pc_write    : out std_logic;
-			rom_read    : out std_logic
+			flags_write : out std_logic;
+			rom_read    : out std_logic;
+			
+			ram_write   : out std_logic;
+			ram_addr_sel: out std_logic; -- 1 para Rs, 0 para Rd
+			
+			zeroFlag, overflowFlag, negativeFlag: in std_logic
 		);
 	end component;
 	
 	signal state       : unsigned(1 downto 0);
 	signal instruction : unsigned(13 downto 0);
-	       
 	signal branch_en   : std_logic;
-	       
+	signal jmp_en      : std_logic;
 	signal alu_op      : unsigned(1 downto 0);
 	signal alu_src_b   : std_logic;
-	       
 	signal reg_write_source: unsigned(1 downto 0);
 	signal reg_write   : std_logic;
-	       
 	signal pc_write    : std_logic;
+	signal flags_write : std_logic;
 	signal rom_read    : std_logic;
+	signal ram_write   : std_logic;
+	signal ram_addr_sel: std_logic;
+	signal zeroFlag    : std_logic;
+	signal overflowFlag: std_logic;
+	signal negativeFlag: std_logic;
 
 begin
 	uut: controlunit port map (
-		state       =>       state,
-        instruction =>       instruction,
-                             
-        branch_en   =>       branch_en,
-                             
-        alu_op      =>       alu_op,  
-        alu_src_b   =>       alu_src_b,
-                             
-        reg_write_source =>  reg_write_source,
-        reg_write   =>       reg_write,
-                             
-        pc_write    =>       pc_write,
-        rom_read    =>       rom_read
+		state       => state,
+        instruction => instruction,
+        branch_en   => branch_en,
+		jmp_en      => jmp_en,
+        alu_op      => alu_op,  
+        alu_src_b   => alu_src_b,
+        reg_write_source => reg_write_source,
+        reg_write   => reg_write,
+        pc_write    => pc_write,
+		flags_write => flags_write,
+        rom_read    => rom_read,
+		ram_write   => ram_write,
+		ram_addr_sel => ram_addr_sel,
+		zeroFlag    => zeroFlag,
+		overflowFlag => overflowFlag,
+		negativeFlag => negativeFlag
 	);
 	
 	process
@@ -76,6 +89,29 @@ begin
 		instruction <= "01000000101110"; -- MOV R5, R6
 		wait for 100 ns;
 		instruction <= "01010000101110"; -- MOV #0x05, R6
+		wait for 100 ns;
+		instruction <= "01100000101110"; -- MOV @R5, R6
+		wait for 100 ns;
+		instruction <= "01110000101110"; -- MOV R5, @R6
+		wait for 100 ns;
+		instruction <= "10000000000110"; -- JMP pulo (vai 6 instruções para frente a partir do PC+1)
+		wait for 100 ns;
+		instruction <= "10010000000110"; -- JN pulo (=, mas só se N = 1)
+		negativeFlag <= '0';
+		wait for 50 ns;
+		negativeFlag <= '1';
+		wait for 50 ns;
+		instruction <= "10100000000110"; -- JEQ pulo (=, mas só se Z = 1)
+		zeroFlag <= '0';
+		wait for 50 ns;
+		zeroFlag <= '1';
+		wait for 50 ns;
+		instruction <= "10110000000110"; -- JNE pulo (=, mas só se Z = 0)
+		zeroFlag <= '0';
+		wait for 50 ns;
+		zeroFlag <= '1';
+		wait for 50 ns;
+		instruction <= "10110000101110"; -- CMP R5, R6
 		wait for 100 ns;
 		instruction <= "11010000000110"; -- BR label (instrucao numero 6)
 		wait for 100 ns;
